@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>jslog</title>
+    <style>
+      @import "./css/jslog.css";
+    </style>
+  </head>
+
+  <body>
+
+<header class="header">
+  <a href="" class="logo">jslog 0.0.1</a>
+  <input class="menu-btn" type="checkbox" id="menu-btn" />
+  <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+  <ul class="menu">
+    <li><a href="#work">Download ADIF</a></li>
+    <li><a href="#about">Upload JSON</a></li>
+    <li><a href="#careers">Select Log</a></li>
+    <li><a href="#contact">Config</a></li>
+  </ul>
+</header>
+<main class="main">
+    <div id="log_list">
+    </div>
+
+    <div id="log_qso_editor">
+
+      <div class="fullrow">
+      <label for="i1">Call</label>
+      <input type="text" id="i1" name="i1" />
+      </div>
+
+      <div class="fullrow">
+      <label for="i2">Date</label>
+      <input type="text" id="i2" name="i2" />
+      </div>
+      
+      <div class="fullrow">
+      <label for="i3">UTC</label>
+      <input type="text" id="i3" name="i3" />
+      </div>
+
+      <div>
+      <label for="i4">Mode</label>
+      <select id="i4" name="i4" />
+        <option value="SSB">SSB</option>
+        <option value="FM">FM</option>
+        <option value="CW">CW</option>
+      </select>
+      </div>
+
+      <div>
+        <label for="i5">TX</label>
+        <input type="text" id="i5" name="i5" maxlength="3" size="3" pattern="[0-9]+" />
+        <label for="i6">RX</label>
+        <input type="text" id="i6" name="i6" maxlength="3" size="3" pattern="[0-9]+" />
+      </div>
+
+      <div class="fullrow">
+      <label for="i7">Note</label>
+      <input type="text" id="i7" name="i7" />
+      </div>
+
+      
+      <button id="log_qso_editor_save" type="button">Save</button>    
+    </div>
+
+
+    <div id="item_list">
+      <table>
+        <tr>
+          <td>2022-08-11</td>
+          <td>14:00</td>
+          <td class="callsign">OM1WS</td>
+          <td>
+            <button type="button">Edit</button>    
+          </td>
+        </tr>
+        <tr>
+          <td>2022-08-11</td>
+          <td>14:00</td>
+          <td class="callsign">OM1WS</td>
+          <td>
+            <button type="button">Edit</button>    
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- TODO remove after careful consideration -->
+    <div style="display: none;">
+        <input type="text" size="50" id="input_text" name="input_text" />
+        <button id="input_submit" name="input_submit">Submit</button>
+        <button id="input_post" name="input_post">Post</button>
+    </div>
+</main>
+
+    <script type="module">
+      import "./js/jslog.js"
+      import "./js/app.js"
+    </script> 
+    <!-- <script src="app.js"></script> TODO remove for bundler -->
+  </body>
+</html>
