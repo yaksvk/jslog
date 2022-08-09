@@ -1,5 +1,11 @@
 # About
 
+The aim is to have a pure JS+CSS single-page application that can be compiled into a single
+HTML file and used without any web server. It relies on localStorage, exports an ADIF file
+and uploads to on-line services.
+
+This is a work in progress and not usable at the moment.
+
 # Installation
 
 ## Quickstart
@@ -22,7 +28,8 @@ adb push dist/jslog.html /storage/self/primary/Download
 ```
 
 For local development it is convenient to run a local development web server (otherwise
-js imports would be blocked)
+js imports would be blocked). The final single-file version in dist does not require a
+running web server.
 
 ```
 npm install http-server
@@ -41,6 +48,7 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [x] switch qso edit / list mode
 - [ ] save qso from form
 - [ ] display qsos in list
+- [ ] clear qso in the editor
 - [ ] edit qso from list (edit mode)
 - [ ] clear list
 - [ ] export adif
@@ -51,4 +59,8 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [ ] qso variables editor
 - [ ] manage >1 logs on device
 - [ ] a nice icon for mode switch button
+- [ ] date validator
+- [ ] utc validator
+- [ ] rst validator
+- [ ] qso should be a formalized data class instance
 
