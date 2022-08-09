@@ -48,6 +48,7 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [x] switch qso edit / list mode
 - [ ] save qso from form
 - [ ] display qsos in list
+- [ ] reinit qso list from the log in memory
 - [ ] clear qso in the editor
 - [ ] edit qso from list (edit mode)
 - [ ] clear list
@@ -62,5 +63,7 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [ ] date validator
 - [ ] utc validator
 - [ ] rst validator
+- [ ] callsign uppercase tranform
 - [ ] qso should be a formalized data class instance
+-
 

@@ -35,7 +35,7 @@ export class Log {
     }
 
     addQso(qso){
-        this.state.qsos.push(qso)
+        this.state.qsos.push(qso);
     }
 
     store(){
@@ -47,7 +47,7 @@ export class Log {
 }
 
 
-class ListLog extends Log {
+export class ListLog extends Log {
 
     constructor(storageName){
         super(storageName);
@@ -114,8 +114,3 @@ class ListLog extends Log {
         log('call submitted');
     }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const logger = new ListLog('globalList2');
-});

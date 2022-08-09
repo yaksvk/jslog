@@ -7,7 +7,8 @@ class JslogApp {
       
         this.wEditor = document.getElementById('log_qso_editor'); 
         this.wList = document.getElementById('log_item_list');
-        this.saveButton = document.getElementById('log_qso_editor_save'); 
+        this.wListTable = document.getElementById('log_item_list_table');
+        this.wSaveButton = document.getElementById('log_qso_editor_save'); 
 
         // use logo for mode switching for the moment
         this.modeSwitch = document.getElementById('logo');
@@ -16,7 +17,7 @@ class JslogApp {
     init(){
         this.switchMode('editor');
         this.modeSwitch.addEventListener('click', () => this.switchMode());
-        this.saveButton.addEventListener('click', () => this.saveQso());
+        this.wSaveButton.addEventListener('click', () => this.saveQso());
         this.wEditor.addEventListener('keypress', event => {
             if (event.keyCode === 13) this.saveQso();
         });
@@ -63,7 +64,27 @@ class JslogApp {
             ), {})
         ;
 
-        console.table(qsoData);
+        this.log.addQso(qsoData);
+        this.listDrawQso(qsoData);
+
+    }
+
+    listDrawQso(qsoData){
+        const tr = document.createElement('tr');
+        
+        const tdDate = document.createElement('td');
+            tdDate.appendChild(document.createTextNode(qsoData.date));
+        const tdUTC = document.createElement('td');
+            tdUTC.appendChild(document.createTextNode(qsoData.utc));
+        const tdCall = document.createElement('td');
+            tdCall.appendChild(document.createTextNode(qsoData.callsign));
+        const tdButton = document.createElement('button');
+            tdButton.setAttribute('type', 'button');
+            tdButton.appendChild(document.createTextNode('Edit'));
+        
+        tr.append(tdDate, tdUTC, tdCall, tdButton);
+        this.wListTable.appendChild(tr);
+        
     }
 }
 document.addEventListener("DOMContentLoaded", () => {
