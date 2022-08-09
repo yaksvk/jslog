@@ -2,13 +2,11 @@
 
 let globalList = [];
 
-function log(msg){
-    console.log(msg);
-}
+const log = msg => console.log(msg);
 
 const DEFAULT_KEY = 'globalList2';
 
-class Log {
+export class Log {
 
     constructor(storageName){
         this.state = {

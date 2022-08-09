@@ -179,7 +179,7 @@ width: 100%;
   text-transform: uppercase;
 }
 
-#item_list button {
+#log_item_list button {
 display: block;
 width: 100%;
     vertical-align: middle;
@@ -191,6 +191,6 @@ width: 100%;
   width: 100%;
 }
 
-#item_list table {
+#log_item_list table {
   width: 100%;
 }

@@ -37,9 +37,9 @@ https://codepen.io/mutedblues/pen/MmPNPG
 
 - [x] flex 'callsign' column in table row
 - [x] move js and css to separate dirs and test w/bundler
-- [ ] switch between list and editing button
+- [x] switch between list and editing button - for now, we are using the app name/logo
+- [x] switch qso edit / list mode
 - [ ] save qso from form
-- [ ] switch qso edit / list mode
 - [ ] display qsos in list
 - [ ] edit qso from list (edit mode)
 - [ ] clear list
@@ -50,4 +50,5 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [ ] json upload
 - [ ] qso variables editor
 - [ ] manage >1 logs on device
+- [ ] a nice icon for mode switch button
 

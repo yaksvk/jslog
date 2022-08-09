@@ -11,9 +11,11 @@
   <body>
 
 <header class="header">
-  <a href="" class="logo">jslog 0.0.1</a>
+  <a href="#" class="logo" id="logo">jslog 0.0.1</a>
+
   <input class="menu-btn" type="checkbox" id="menu-btn" />
   <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+
   <ul class="menu">
     <li><a href="#work">Download ADIF</a></li>
     <li><a href="#about">Upload JSON</a></li>
@@ -22,8 +24,6 @@
   </ul>
 </header>
 <main class="main">
-    <div id="log_list">
-    </div>
 
     <div id="log_qso_editor">
 
@@ -68,7 +68,7 @@
     </div>
 
 
-    <div id="item_list">
+    <div id="log_item_list">
       <table>
         <tr>
           <td>2022-08-11</td>
@@ -98,9 +98,7 @@
 </main>
 
     <script type="module">
-      import "./js/jslog.js"
       import "./js/app.js"
     </script> 
-    <!-- <script src="app.js"></script> TODO remove for bundler -->
   </body>
 </html>
