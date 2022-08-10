@@ -17,7 +17,7 @@ export class Log {
         log(this.state);
 
         this.storageName =
-            (typeof storageName === undefined) ? DEFAULT_KEY : storageName;
+            (storageName === undefined) ? DEFAULT_KEY : storageName;
 
         // try to restore from localStorage
         const savedString = localStorage.getItem(this.storageName);
@@ -36,6 +36,7 @@ export class Log {
 
     addQso(qso){
         this.state.qsos.push(qso);
+        this.store();
     }
 
     store(){

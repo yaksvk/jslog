@@ -23,6 +23,7 @@ class JslogApp {
         });
 
         this.log = new Log();
+        this.listRedraw();
     }
 
     // switch application modes between editing a qso and showing the whole log
@@ -64,12 +65,14 @@ class JslogApp {
             ), {})
         ;
 
+        log('adding qso');
         this.log.addQso(qsoData);
         this.listDrawQso(qsoData);
 
     }
 
     listDrawQso(qsoData){
+        console.table(qsoData);
         const tr = document.createElement('tr');
         
         const tdDate = document.createElement('td');
@@ -84,9 +87,21 @@ class JslogApp {
         
         tr.append(tdDate, tdUTC, tdCall, tdButton);
         this.wListTable.appendChild(tr);
-        
+    }
+
+    listRedraw(){
+        // remove all elements from table
+        while (this.wListTable.firstChild){
+            this.wListTable.removeChild(this.wListTable.firstChild);
+        }
+
+        // draw qsos from the log
+        this.log.state.qsos.forEach(item => {
+            this.listDrawQso(item);
+        });
     }
 }
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const jslog = new JslogApp();
