@@ -47,8 +47,8 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [x] switch between list and editing button - for now, we are using the app name/logo
 - [x] switch qso edit / list mode
 - [x] save qso from form
-- [ ] display qsos in list
-- [ ] reinit qso list from the log in memory
+- [x] display qsos in list
+- [x] reinit qso list from the log in memory
 - [ ] clear qso in the editor
 - [ ] edit qso from list (edit mode)
 - [ ] clear list
