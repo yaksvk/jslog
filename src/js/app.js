@@ -54,9 +54,10 @@ class JslogApp {
             date: 'i2',
             utc: 'i3',
             mode: 'i4',
-            rst_sent: 'i5',
-            rst_rcvd: 'i6',
-            note: 'i7'
+            freq: 'i5',
+            rst_sent: 'i6',
+            rst_rcvd: 'i7',
+            note: 'i8'
         };
 
         const qsoData =
@@ -69,6 +70,9 @@ class JslogApp {
         this.log.addQso(qsoData);
         this.listDrawQso(qsoData);
 
+    }
+
+    resetQsoEditor(){
     }
 
     listDrawQso(qsoData){

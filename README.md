@@ -65,5 +65,5 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [ ] rst validator
 - [ ] callsign uppercase tranform
 - [ ] qso should be a formalized data class instance
--
+- [ ] qso editor - keep previous values like date/time/mode/freq
 
