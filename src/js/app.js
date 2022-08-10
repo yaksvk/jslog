@@ -12,6 +12,17 @@ class JslogApp {
 
         // use logo for mode switching for the moment
         this.modeSwitch = document.getElementById('logo');
+
+        this.editValues = {
+            callsign: {id: 'i1'},
+            date: {id: 'i2'},
+            utc: {id: 'i3'},
+            mode: {id: 'i4', use_previous: 1},
+            freq: {id: 'i5', use_previous: 1},
+            rst_sent: {id: 'i6', use_previous: 1},
+            rst_rcvd: {id: 'i7', use_previous: 1},
+            note: {id: 'i8'}
+        };
     }
 
     init(){
@@ -44,52 +55,53 @@ class JslogApp {
              this.wEditor.style.display = 'none';
              this.wList.style.display = 'block';
          }
-
     }
 
+    // process save event - gather values from UI, create a QSO record, log it,
+    // reset editor fields and draw QSO entry to the list
     saveQso(){
         // gather values
-        const editValues = {
-            callsign: 'i1',
-            date: 'i2',
-            utc: 'i3',
-            mode: 'i4',
-            freq: 'i5',
-            rst_sent: 'i6',
-            rst_rcvd: 'i7',
-            note: 'i8'
-        };
-
         const qsoData =
-            Object.keys(editValues).reduce((acc, cur) => ({ ...acc,
-                [cur]: document.getElementById(editValues[cur]).value }
+            Object.keys(this.editValues).reduce((acc, cur) => ({ ...acc,
+                [cur]: document.getElementById(this.editValues[cur].id).value }
             ), {})
         ;
 
-        log('adding qso');
         this.log.addQso(qsoData);
+        // TODO this should return an index number or something so that the list can draw it
+        this.resetQsoEditor(qsoData);
         this.listDrawQso(qsoData);
-
     }
 
-    resetQsoEditor(){
+    resetQsoEditor(previousQso){
+
+        for (let field of Object.keys(this.editValues)){
+            document.getElementById(this.editValues[field].id).value = 
+                (this.editValues[field].use_previous === 1) ?
+                    previousQso[field] : '';
+        }
     }
 
-    listDrawQso(qsoData){
-        console.table(qsoData);
+    listDrawQso(qsoData, index){
         const tr = document.createElement('tr');
-        
+
         const tdDate = document.createElement('td');
             tdDate.appendChild(document.createTextNode(qsoData.date));
         const tdUTC = document.createElement('td');
             tdUTC.appendChild(document.createTextNode(qsoData.utc));
         const tdCall = document.createElement('td');
             tdCall.appendChild(document.createTextNode(qsoData.callsign));
+            tdCall.setAttribute('class', 'callsign');
+        const tdMode = document.createElement('td');
+            tdMode.appendChild(document.createTextNode(qsoData.mode));
+        const tdFreq = document.createElement('td');
+            tdFreq.appendChild(document.createTextNode(qsoData.freq));
         const tdButton = document.createElement('button');
             tdButton.setAttribute('type', 'button');
+            tdButton.setAttribute('data-qso-id', index);
             tdButton.appendChild(document.createTextNode('Edit'));
         
-        tr.append(tdDate, tdUTC, tdCall, tdButton);
+        tr.append(tdDate, tdUTC, tdCall, tdMode, tdFreq, tdButton);
         this.wListTable.appendChild(tr);
     }
 
@@ -100,9 +112,9 @@ class JslogApp {
         }
 
         // draw qsos from the log
-        this.log.state.qsos.forEach(item => {
-            this.listDrawQso(item);
-        });
+        for (let [index, item] of this.log.state.qsos.entries()){
+            this.listDrawQso(item, index);
+        }
     }
 }
 

@@ -49,9 +49,9 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [x] save qso from form
 - [x] display qsos in list
 - [x] reinit qso list from the log in memory
-- [ ] clear qso in the editor
+- [x] clear qso in the editor
 - [ ] edit qso from list (edit mode)
-- [ ] clear list
+- [ ] clear list as UI action
 - [ ] export adif
 - [ ] date editor
 - [ ] time editor
