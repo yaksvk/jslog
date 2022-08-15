@@ -52,7 +52,8 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [x] reinit qso list from the log in memory
 - [x] clear qso in the editor
 - [x] edit qso from list (edit mode)
-- [ ] clear list as UI action
+- [x] clear list as UI action
+- [ ] confirm before clear list
 - [ ] export adif
 - [ ] date editor
 - [ ] time editor

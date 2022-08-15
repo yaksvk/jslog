@@ -49,4 +49,9 @@ export class Log {
 
         localStorage.setItem(this.storageName, JSON.stringify(this.state));
     }
+
+    clear(){
+        this.state.qsos = [];
+        this.store();
+    }
 }

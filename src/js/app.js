@@ -9,6 +9,7 @@ class JslogApp {
         this.wList = document.getElementById('log_item_list');
         this.wListTable = document.getElementById('log_item_list_table');
         this.wSaveButton = document.getElementById('log_qso_editor_save'); 
+        this.wMenuResetLog = document.getElementById('menu_reset_log'); 
 
         // use logo for mode switching for the moment
         this.modeSwitch = document.getElementById('logo');
@@ -29,6 +30,7 @@ class JslogApp {
         this.switchMode('editor');
         this.modeSwitch.addEventListener('click', () => this.switchMode());
         this.wSaveButton.addEventListener('click', () => this.saveQso());
+        this.wMenuResetLog.addEventListener('click', () => this.resetLog());
         this.wEditor.addEventListener('keypress', event => {
             if (event.keyCode === 13) this.saveQso();
         });
@@ -135,6 +137,11 @@ class JslogApp {
         for (let field of Object.keys(this.editValues)){
             document.getElementById(this.editValues[field].id).value = qsoToEdit[field];
         }
+    }
+
+    resetLog(){
+        this.log.clear();
+        this.listRedraw();
     }
 }
 
