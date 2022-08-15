@@ -53,7 +53,7 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [x] clear qso in the editor
 - [x] edit qso from list (edit mode)
 - [x] clear list as UI action
-- [ ] confirm before clear list
+- [x] confirm before clear list
 - [ ] export adif
 - [ ] date editor
 - [ ] time editor
@@ -69,4 +69,5 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [ ] qso should be a formalized data class instance
 - [ ] qso editor - keep previous values like date/time/mode/freq (from previous saved qso, pileup mode)
 - [ ] when editing a qso, cache the data in the editor so that anything in progress is not overwritten
+- [ ] nice responsive confirm dialogs
 

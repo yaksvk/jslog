@@ -140,6 +140,8 @@ class JslogApp {
     }
 
     resetLog(){
+        if (!confirm('Really clear?')) return;
+
         this.log.clear();
         this.listRedraw();
     }
