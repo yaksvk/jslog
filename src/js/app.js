@@ -35,6 +35,8 @@ class JslogApp {
 
         this.log = new Log();
         this.listRedraw();
+        this.currentQsoCache = undefined;
+        this.editingQsoIndex = undefined;
     }
 
     // switch application modes between editing a qso and showing the whole log
@@ -67,10 +69,16 @@ class JslogApp {
             ), {})
         ;
 
-        this.log.addQso(qsoData);
-        // TODO this should return an index number or something so that the list can draw it
+        this.log.addQso(qsoData, this.editingQsoIndex);
         this.resetQsoEditor(qsoData);
-        this.listDrawQso(qsoData);
+
+        if (this.editingQsoIndex !== undefined){
+            this.editingQsoIndex = undefined // reset current index
+            this.listRedraw();
+            this.switchMode('list');
+        } else {
+            this.listDrawQso(qsoData, this.log.state.qsos.length - 1); // use log length as new index
+        }
     }
 
     resetQsoEditor(previousQso){
@@ -100,6 +108,7 @@ class JslogApp {
             tdButton.setAttribute('type', 'button');
             tdButton.setAttribute('data-qso-id', index);
             tdButton.appendChild(document.createTextNode('Edit'));
+            tdButton.addEventListener('click', () => this.editQso(index));
         
         tr.append(tdDate, tdUTC, tdCall, tdMode, tdFreq, tdButton);
         this.wListTable.appendChild(tr);
@@ -114,6 +123,17 @@ class JslogApp {
         // draw qsos from the log
         for (let [index, item] of this.log.state.qsos.entries()){
             this.listDrawQso(item, index);
+        }
+    }
+
+    editQso(index){
+        this.switchMode('editor');
+
+        let qsoToEdit = this.log.state.qsos[index];
+        this.editingQsoIndex = index;
+
+        for (let field of Object.keys(this.editValues)){
+            document.getElementById(this.editValues[field].id).value = qsoToEdit[field];
         }
     }
 }

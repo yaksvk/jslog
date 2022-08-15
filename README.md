@@ -29,7 +29,7 @@ adb push dist/jslog.html /storage/self/primary/Download
 
 For local development it is convenient to run a local development web server (otherwise
 js imports would be blocked). The final single-file version in dist does not require a
-running web server.
+running web server after it has been bundled.
 
 ```
 npm install http-server
@@ -37,6 +37,7 @@ npx http-server src # listen on localhost:8080 by default
 ```
 
 # Acknowledgements
+
 CSS taken from mutedblues (@mutedblues)
 https://codepen.io/mutedblues/pen/MmPNPG
 
@@ -50,7 +51,7 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [x] display qsos in list
 - [x] reinit qso list from the log in memory
 - [x] clear qso in the editor
-- [ ] edit qso from list (edit mode)
+- [x] edit qso from list (edit mode)
 - [ ] clear list as UI action
 - [ ] export adif
 - [ ] date editor
@@ -65,5 +66,6 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [ ] rst validator
 - [ ] callsign uppercase tranform
 - [ ] qso should be a formalized data class instance
-- [ ] qso editor - keep previous values like date/time/mode/freq
+- [ ] qso editor - keep previous values like date/time/mode/freq (from previous saved qso, pileup mode)
+- [ ] when editing a qso, cache the data in the editor so that anything in progress is not overwritten
 
