@@ -49,6 +49,10 @@ class JslogApp {
         this.editingQsoIndex = undefined;
 
         this.reinitQsoEditor();
+
+        this.ticker = setInterval(() => {
+            this.timeTicker();
+        },5000);
     }
 
     // switch application modes between editing a qso and showing the whole log
@@ -122,9 +126,15 @@ class JslogApp {
     updateDateTimeFields(){
         const curdate = new Date();
         document.getElementById(this.editValues['utc'].id).value =
-            `${String(curdate.getUTCHours()).padStart(2,'0')}:${String(curdate.getUTCHours()).padStart(2,'0')}`;
+            `${String(curdate.getUTCHours()).padStart(2,'0')}:${String(curdate.getUTCMinutes()).padStart(2,'0')}`;
         document.getElementById(this.editValues['date'].id).value = 
             `${String(curdate.getUTCFullYear()).padStart(2,'0')}-${String(curdate.getUTCMonth()).padStart(2,'0')}-${String(curdate.getUTCDate()).padStart(2,'0')}`;
+    }
+
+    timeTicker(){
+        // TODO unless this.editingQsoIndex or date/time changed -> this.updateDateTimeFields()
+        // resetQsoEditor should reset the date/time "changed"
+        this.updateDateTimeFields();
     }
 
     listDrawQso(qsoData, index){
