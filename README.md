@@ -55,7 +55,7 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [x] clear list as UI action
 - [x] confirm before clear list
 - [x] export JSON
-- [ ] export adif
+- [x] export adif
 - [ ] date editor
 - [ ] time editor
 - [ ] datetime auto-advancer (turn off when field touched before save, turn off when editing existing qso)
@@ -71,4 +71,5 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [ ] qso editor - keep previous values like date/time/mode/freq (from previous saved qso, pileup mode)
 - [ ] when editing a qso, cache the data in the editor so that anything in progress is not overwritten
 - [ ] nice responsive confirm dialogs
+- [ ] after saving qso, refocus on callsign textfield
 

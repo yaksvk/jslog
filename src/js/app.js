@@ -2,6 +2,7 @@ const log = msg => console.log(msg);
 
 import {Log} from './jslog.js';
 import {ExportJson} from './export_json.js';
+import {ExportAdif} from './export_adif.js';
 
 class JslogApp {
     constructor(){
@@ -14,6 +15,7 @@ class JslogApp {
         this.wSaveButton = document.getElementById('log_qso_editor_save'); 
         this.wMenuResetLog = document.getElementById('menu_reset_log'); 
         this.wMenuExportJson = document.getElementById('menu_export_json'); 
+        this.wMenuExportAdif = document.getElementById('menu_export_adif'); 
 
         // use logo for mode switching for the moment
         this.modeSwitch = document.getElementById('logo');
@@ -36,6 +38,7 @@ class JslogApp {
         this.wSaveButton.addEventListener('click', () => this.saveQso());
         this.wMenuResetLog.addEventListener('click', () => this.resetLog());
         this.wMenuExportJson.addEventListener('click', () => this.export('json'));
+        this.wMenuExportAdif.addEventListener('click', () => this.export('adif'));
         this.wEditor.addEventListener('keypress', event => {
             if (event.keyCode === 13) this.saveQso();
         });
@@ -158,7 +161,8 @@ class JslogApp {
     export(format){
 
         const exporters = {
-            'json': new ExportJson()
+            'json': new ExportJson(),
+            'adif': new ExportAdif()
         };
 
         const file_content = exporters[format].export(this.log);
