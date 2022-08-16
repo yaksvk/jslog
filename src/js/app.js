@@ -47,6 +47,8 @@ class JslogApp {
         this.listRedraw();
         this.currentQsoCache = undefined;
         this.editingQsoIndex = undefined;
+
+        this.reinitQsoEditor();
     }
 
     // switch application modes between editing a qso and showing the whole log
@@ -93,6 +95,8 @@ class JslogApp {
         } else {
             this.listDrawQso(qsoData, this.log.state.qsos.length - 1); // use log length as new index
         }
+
+    
     }
 
     resetQsoEditor(previousQso){
@@ -102,6 +106,25 @@ class JslogApp {
                 (this.editValues[field].use_previous === 1) ?
                     previousQso[field] : '';
         }
+
+        this.reinitQsoEditor();
+    }
+
+    reinitQsoEditor(){
+
+        // GUI actions
+        document.getElementById(this.editValues['callsign'].id).focus();
+        
+        // date and time
+        this.updateDateTimeFields();
+    }
+
+    updateDateTimeFields(){
+        const curdate = new Date();
+        document.getElementById(this.editValues['utc'].id).value =
+            `${String(curdate.getUTCHours()).padStart(2,'0')}:${String(curdate.getUTCHours()).padStart(2,'0')}`;
+        document.getElementById(this.editValues['date'].id).value = 
+            `${String(curdate.getUTCFullYear()).padStart(2,'0')}-${String(curdate.getUTCMonth()).padStart(2,'0')}-${String(curdate.getUTCDate()).padStart(2,'0')}`;
     }
 
     listDrawQso(qsoData, index){
