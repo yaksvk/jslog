@@ -18,6 +18,7 @@
 
   <ul class="menu">
     <li><a id="menu_reset_log" href="#">Reset Log</a></li>
+    <li><a id="menu_export_json" href="#">Export JSON</a></li>
   </ul>
 </header>
 <main class="main">
@@ -87,12 +88,8 @@
       </table>
     </div>
 
-    <!-- TODO remove after careful consideration -->
-    <div style="display: none;">
-        <input type="text" size="50" id="input_text" name="input_text" />
-        <button id="input_submit" name="input_submit">Submit</button>
-        <button id="input_post" name="input_post">Post</button>
-    </div>
+    <div id="export" style="display: none;"></div>
+
 </main>
 
     <script type="module">

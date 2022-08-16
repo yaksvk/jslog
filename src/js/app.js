@@ -1,21 +1,25 @@
 const log = msg => console.log(msg);
 
 import {Log} from './jslog.js';
+import {ExportJson} from './export_json.js';
 
 class JslogApp {
     constructor(){
       
         this.wEditor = document.getElementById('log_qso_editor'); 
         this.wList = document.getElementById('log_item_list');
+        this.wExport = document.getElementById('export_page');
+
         this.wListTable = document.getElementById('log_item_list_table');
         this.wSaveButton = document.getElementById('log_qso_editor_save'); 
         this.wMenuResetLog = document.getElementById('menu_reset_log'); 
+        this.wMenuExportJson = document.getElementById('menu_export_json'); 
 
         // use logo for mode switching for the moment
         this.modeSwitch = document.getElementById('logo');
 
         this.editValues = {
-            callsign: {id: 'i1'},
+            callsign: {id: 'i1', export: str => str.toUpperCase()},
             date: {id: 'i2'},
             utc: {id: 'i3'},
             mode: {id: 'i4', use_previous: 1},
@@ -31,6 +35,7 @@ class JslogApp {
         this.modeSwitch.addEventListener('click', () => this.switchMode());
         this.wSaveButton.addEventListener('click', () => this.saveQso());
         this.wMenuResetLog.addEventListener('click', () => this.resetLog());
+        this.wMenuExportJson.addEventListener('click', () => this.export('json'));
         this.wEditor.addEventListener('keypress', event => {
             if (event.keyCode === 13) this.saveQso();
         });
@@ -50,14 +55,15 @@ class JslogApp {
              this.mode = mode;
          }
 
-         if (this.mode === 'editor'){
-             this.wEditor.style.display = 'block';
-             this.wList.style.display = 'none';
-         }
-
-         if (this.mode === 'list'){
-             this.wEditor.style.display = 'none';
-             this.wList.style.display = 'block';
+         // widget list
+         const widgets = {
+             'editor': this.wEditor,
+             'list': this.wList
+         };
+       
+         for (let mode_name of Object.keys(widgets)){
+             widgets[mode_name].style.display =
+                 (this.mode === mode_name) ? 'block' : 'none';
          }
     }
 
@@ -67,8 +73,11 @@ class JslogApp {
         // gather values
         const qsoData =
             Object.keys(this.editValues).reduce((acc, cur) => ({ ...acc,
-                [cur]: document.getElementById(this.editValues[cur].id).value }
-            ), {})
+                [cur]: 
+                    (typeof(this.editValues[cur].export) === 'function') ?
+                        this.editValues[cur].export(document.getElementById(this.editValues[cur].id).value) :
+                        document.getElementById(this.editValues[cur].id).value 
+            }), {})
         ;
 
         this.log.addQso(qsoData, this.editingQsoIndex);
@@ -144,6 +153,26 @@ class JslogApp {
 
         this.log.clear();
         this.listRedraw();
+    }
+
+    export(format){
+
+        const exporters = {
+            'json': new ExportJson()
+        };
+
+        const file_content = exporters[format].export(this.log);
+        const filename = `export.${format}`;
+        
+        const link = document.createElement('a');
+        const div_export = document.getElementById('export');
+        
+        link.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(file_content));
+        link.setAttribute('download', filename);
+
+        div_export.appendChild(link);
+        link.click();
+        div_export.removeChild(link);
     }
 }
 

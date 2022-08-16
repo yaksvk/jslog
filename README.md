@@ -54,6 +54,7 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [x] edit qso from list (edit mode)
 - [x] clear list as UI action
 - [x] confirm before clear list
+- [x] export JSON
 - [ ] export adif
 - [ ] date editor
 - [ ] time editor
