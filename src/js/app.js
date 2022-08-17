@@ -42,6 +42,9 @@ class JslogApp {
         this.wEditor.addEventListener('keypress', event => {
             if (event.keyCode === 13) this.saveQso();
         });
+        
+        document.getElementById(this.editValues['utc'].id).addEventListener('change', () => { log('CHANGE'); this.dateTimeChanged = true });
+        document.getElementById(this.editValues['date'].id).addEventListener('change', () => { log('CHANGE'); this.dateTimeChanged = true });
 
         this.log = new Log();
         this.listRedraw();
@@ -118,9 +121,10 @@ class JslogApp {
 
         // GUI actions
         document.getElementById(this.editValues['callsign'].id).focus();
-        
+
         // date and time
         this.updateDateTimeFields();
+        this.dateTimeChanged = false;
     }
 
     updateDateTimeFields(){
@@ -132,8 +136,18 @@ class JslogApp {
     }
 
     timeTicker(){
-        // TODO unless this.editingQsoIndex or date/time changed -> this.updateDateTimeFields()
-        // resetQsoEditor should reset the date/time "changed"
+        // skip when we are editing an existing qso
+        if (this.editingQsoIndex !== undefined) return;
+
+        // date/time fields changed
+        if (this.dateTimeChanged) return;
+        
+        // skip if date or time inputs are active (user has focus there)
+        const utc_input = document.getElementById(this.editValues['utc'].id);
+        const date_input = document.getElementById(this.editValues['date'].id);
+        if (document.activeElement === utc_input ||
+            document.activeElement === date_input) return;
+
         this.updateDateTimeFields();
     }
 

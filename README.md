@@ -62,9 +62,10 @@ https://codepen.io/mutedblues/pen/MmPNPG
 
 ## 0.2.0
 
+- [x] datetime auto-advancer (turn off when field touched before save, turn off when editing existing qso)
+- [ ] default rst switch with mode change (RS vs RST)
 - [ ] date editor
 - [ ] time editor
-- [ ] datetime auto-advancer (turn off when field touched before save, turn off when editing existing qso)
 - [ ] json upload
 - [ ] qso variables editor
 - [ ] manage >1 logs on device
