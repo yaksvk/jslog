@@ -43,6 +43,7 @@ https://codepen.io/mutedblues/pen/MmPNPG
 
 # Roadmap
 
+## 0.1.0
 - [x] flex 'callsign' column in table row
 - [x] move js and css to separate dirs and test w/bundler
 - [x] switch between list and editing button - for now, we are using the app name/logo
@@ -57,6 +58,10 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [x] export JSON
 - [x] export adif
 - [x] after saving qso, refocus on callsign textfield
+- [x] callsign uppercase tranform
+
+## 0.2.0
+
 - [ ] date editor
 - [ ] time editor
 - [ ] datetime auto-advancer (turn off when field touched before save, turn off when editing existing qso)
@@ -67,9 +72,8 @@ https://codepen.io/mutedblues/pen/MmPNPG
 - [ ] date validator
 - [ ] utc validator
 - [ ] rst validator
-- [x] callsign uppercase tranform
 - [ ] qso should be a formalized data class instance
 - [ ] qso editor - keep previous values like date/time/mode/freq (from previous saved qso, pileup mode)
-- [ ] when editing a qso, cache the data in the editor so that anything in progress is not overwritten
 - [ ] nice responsive confirm dialogs
+- [ ] when editing a qso, cache the data in the editor so that anything in progress is not overwritten
 
